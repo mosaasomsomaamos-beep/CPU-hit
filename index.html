@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM ERROR</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .header {
+            font-size: 20px;
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 10px;
+            animation: blink 0.5s infinite alternate;
+        }
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0.3; }
+        }
+        .console {
+            flex-grow: 1;
+            overflow: hidden;
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            color: #00ff66;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 15px;
+            color: #fff;
+            background: #990000;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        /* نافذة الزر الوهمي لضمان ملء الشاشة */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+        }
+        .fake-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 15px #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- واجهة الضغط الإجباري لملء الشاشة وبدء المقلب -->
+    <div id="overlay">
+        <h2 style="color: #ff0000;">⚠️ تنبيه أمني عاجل!</h2>
+        <p style="color: #fff; font-size: 16px;">تم اكتشاف برمجية خبيثة تحاول تدمير نظام التشغيل.<br>اضغط على الزر أدناه لبدء عملية الحماية الطارئة فوراً:</p>
+        <button class="fake-btn" onclick="startPrank()">بدء الإصلاح الفوري</button>
+    </div>
+
+    <div class="header">⚠️ تحذير: تم اختراق نواة المعالج (CPU HACKED) ⚠️</div>
+    
+    <div class="console" id="console"></div>
+
+    <div class="footer" id="status">جاري تجاوز جدار الحماية...</div>
+
+    <script>
+        function startPrank() {
+            // تفعيل وضع ملء الشاشة إجبارياً عند الضغط
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            }
+            
+            // إخفاء نافذة التحذير الوهمي وبدء هكر الماتركس
+            document.getElementById('overlay').style.display = 'none';
+            runLogs();
+        }
+
+        const logs = [
+            "> Initializing root exploit...",
+            "> Bypassing kernel level security...",
+            "> Accessing /storage/emulated/0/DCIM/Camera ... [FOUND 1,420 Photos]",
+            "> Accessing /data/data/com.whatsapp/databases/ ... [FOUND]",
+            "> Uploading private contacts to remote server (192.168.1.105)...",
+            "> WARNING: Root access granted to external attacker.",
+            "> Encrypting system partitions with AES-256...",
+            "> CPU Temperature critical: 98°C ... Thermal throttling failed.",
+            "> --------------------------------------------------",
+            "> FATAL ERROR: Operating system corruption imminent.",
+            "> DO NOT TURN OFF YOUR DEVICE OR DATA WILL BE DESTROYED PERMANENTLY!"
+        ];
+
+        let consoleDiv = document.getElementById('console');
+        let statusDiv = document.getElementById('status');
+        let index = 0;
+
+        function runLogs() {
+            if (index < logs.length) {
+                consoleDiv.innerHTML += logs[index] + "\n";
+                let percent = Math.min(100, (index + 1) * 10);
+                statusDiv.innerText = `جاري نقل البيانات الحساسة... (${percent}%)`;
+                index++;
+                setTimeout(runLogs, 800);
+            } else {
+                statusDiv.innerText = "😂 مقلب بسيط يا صديقي! جهازك بأمان تام ولا يوجد أي اختراق.";
+                statusDiv.style.background = "#006600";
+            }
+        }
+    </script>
+</body>
+</html>
